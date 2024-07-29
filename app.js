@@ -23,5 +23,8 @@ app.use("/api", indexRoutes);
 const applicantRoutes = require("./routes/applicant.routes");
 app.use("/api",applicantRoutes);
 
+const blogRouter = require('./routes/blog.routes');
+app.use('/api', blogRouter);
+
 
 module.exports = app;
