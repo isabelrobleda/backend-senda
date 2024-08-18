@@ -1,12 +1,12 @@
-// routes/blog.js
+// routes/contact.js
 const express = require('express');
 const router = express.Router();
-const BlogPost = require('../models/blog.model');
+const ContactForm = require('../models/contact.model');
 
-// Create a new blog post
-router.post('/blog', async (req, res) => {
-    const { title, content, author } = req.body;
-    const newPost = new BlogPost({ title, content, author });
+// Create a new contact post
+router.post('/contact', async (req, res) => {
+    const { FirstName, LastName, Phone, Email, Message } = req.body;
+    const newPost = new ContactForm({ FirstName, LastName, Phone, Email, Message });
     try {
         await newPost.save();
         res.status(201).json(newPost);
@@ -15,22 +15,22 @@ router.post('/blog', async (req, res) => {
     }
 });
 
-// Get all blog posts
-router.get('/blog', async (req, res) => {
+// Get all posts
+router.get('/contact', async (req, res) => {
     try {
-        const posts = await BlogPost.find();
+        const posts = await ContactForm.find();
         res.json(posts);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
-// Get a single blog post by ID
-router.get('/blog/:id', async (req, res) => {
+// Get a single  post by ID
+router.get('/contact/:id', async (req, res) => {
     try {
-        const post = await BlogPost.findById(req.params.id);
+        const post = await ContactForm.findById(req.params.id);
         if (post == null) {
-            return res.status(404).json({ message: 'Cannot find post' });
+            return res.status(404).json({ message: 'Cannot find contact' });
         }
         res.json(post);
     } catch (err) {
@@ -39,12 +39,12 @@ router.get('/blog/:id', async (req, res) => {
 });
 
 // Update a blog post
-router.put('/blog/:id', async (req, res) => {
-    const { title, content, author } = req.body;
+router.put('/contact/:id', async (req, res) => {
+    const { FirstName, LastName, Phone, Email, Message } = req.body;
     try {
-        const post = await BlogPost.findByIdAndUpdate(
+        const post = await ContactForm.findByIdAndUpdate(
             req.params.id,
-            { title, content, author },
+            { FirstName, LastName, Phone, Email, Message },
             { new: true }
         );
         if (post == null) {
@@ -56,10 +56,10 @@ router.put('/blog/:id', async (req, res) => {
     }
 });
 
-// Delete a blog post
-router.delete('/blog/:id', async (req, res) => {
+// Delete a contact post
+router.delete('/contact/:id', async (req, res) => {
     try {
-        const post = await BlogPost.findByIdAndDelete(req.params.id);
+        const post = await ContactForm.findByIdAndDelete(req.params.id);
         if (post == null) {
             return res.status(404).json({ message: 'Cannot find post' });
         }
