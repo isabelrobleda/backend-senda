@@ -1,7 +1,10 @@
 const router = require("express").Router();
 const applicant = require("../models/applicant.model");
 
-router.post("/aplica-al-senda", (req, res, next) => {
+router.post("/aplica-al-senda", (req, res) => {
+
+  console.log("Received request body:", req.body);
+
   const {
     FullName,
     BirthDate,
@@ -17,6 +20,22 @@ router.post("/aplica-al-senda", (req, res, next) => {
     Expectations,
     ImportantMatters
   } = req.body;
+
+  console.log({
+    FullName,
+    BirthDate,
+    GradeRequested,
+    SchoolCycle,
+    Grade,
+    SchoolName,
+    ReasonOfChange,
+    ParentsNames,
+    Phone,
+    Email,
+    HowDidYouKnow,
+    Expectations,
+    ImportantMatters
+  });
 
   const newApplicant = { 
     FullName,
@@ -37,7 +56,7 @@ router.post("/aplica-al-senda", (req, res, next) => {
 
   applicant.create(newApplicant)
     .then(() => {
-      res.status(200).json(newApplicant);
+      res.json(newApplicant)
     })
     .catch((err) => {
       console.error("Error saving applicant:", err);
