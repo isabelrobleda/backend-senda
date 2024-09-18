@@ -4,13 +4,12 @@ const fs = require("fs");
 require("dotenv").config();
 
 router.post("/applicant-form", (req, res, next) => {
-  const { InfoKid, InfoParents, InfoPrevSchool, NextSteps } = req.body;
+  const { InfoKid, InfoParents, Others } = req.body;
   
   applicant.create({
     InfoKid,
     InfoParents,
-    InfoPrevSchool,
-    NextSteps,
+    Others,
   })
   .then((applicant) => {
     res.status(200).json(applicant);

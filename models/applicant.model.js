@@ -2,28 +2,23 @@ const { Schema, model } = require("mongoose");
 
 const applicantSchema = new Schema({
     InfoKid: {
-        Name: String,
-        LastName: String,
-        Age: Number,
+        FullName: String,
         BirthDate: Date,
+        GradeRequested: String,
+        SchoolCycle: String,
+        Grade: String,
+        SchoolName: String,
+        ReasonOfChange: String
     },
     InfoParents: {
-        FatherName: String,
-        FatherLastName: String,
-        MotherName: String,
-        MotherLastName: String,
+        ParentsNames: String,
         Phone: Number,
         Email: String,
     },
-    InfoPrevSchool: {
-        SchoolName: String,
-        Address: String,
-        Phone: Number,
-        Email: String,
-    },
-    NextSteps: {
-        Visit: Date,
-        Interview: Boolean,
+    Others: {
+        HowDidYouKnow: String,
+        Expectations: String,
+        ImportantMatters: String,
     },
     })
 
