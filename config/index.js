@@ -23,7 +23,7 @@ module.exports = (app) => {
   // controls a very specific header to pass headers from the frontend
   app.use(cors());
   app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://colegiosenda.edu.mx/aplica");
+    res.header("Access-Control-Allow-Origin", "https://colegiosenda.edu.mx/aplica-al-senda", "http://localhost:5173" );
     if(req.method === "OPTIONS"){
       res.header("Access-Control-Allow-Methods", "POST, PUT, PATCH, DELETE, GET");
       return res.status(200).json({});

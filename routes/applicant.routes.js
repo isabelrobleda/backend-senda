@@ -3,7 +3,7 @@ const applicant = require("../models/applicant.model");
 const fs = require("fs");
 require("dotenv").config();
 
-router.post("/applicant-form", (req, res, next) => {
+router.post("/aplica-al-senda", (req, res, next) => {
   const { InfoKid, InfoParents, Others } = req.body;
   
   applicant.create({

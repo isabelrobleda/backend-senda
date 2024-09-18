@@ -4,7 +4,7 @@ const router = express.Router();
 const ContactForm = require('../models/contact.model');
 
 // Create a new contact post
-router.post('/contact', async (req, res) => {
+router.post('/contacto', async (req, res) => {
     const { FirstName, LastName, Phone, Email, Message } = req.body;
     const newPost = new ContactForm({ FirstName, LastName, Phone, Email, Message });
     try {
@@ -16,7 +16,7 @@ router.post('/contact', async (req, res) => {
 });
 
 // Get all posts
-router.get('/contact', async (req, res) => {
+router.get('/contacto', async (req, res) => {
     try {
         const posts = await ContactForm.find();
         res.json(posts);
@@ -26,7 +26,7 @@ router.get('/contact', async (req, res) => {
 });
 
 // Get a single  post by ID
-router.get('/contact/:id', async (req, res) => {
+router.get('/contacto/:id', async (req, res) => {
     try {
         const post = await ContactForm.findById(req.params.id);
         if (post == null) {
@@ -39,7 +39,7 @@ router.get('/contact/:id', async (req, res) => {
 });
 
 // Update a blog post
-router.put('/contact/:id', async (req, res) => {
+router.put('/contacto/:id', async (req, res) => {
     const { FirstName, LastName, Phone, Email, Message } = req.body;
     try {
         const post = await ContactForm.findByIdAndUpdate(
@@ -57,7 +57,7 @@ router.put('/contact/:id', async (req, res) => {
 });
 
 // Delete a contact post
-router.delete('/contact/:id', async (req, res) => {
+router.delete('/contacto/:id', async (req, res) => {
     try {
         const post = await ContactForm.findByIdAndDelete(req.params.id);
         if (post == null) {
